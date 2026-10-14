@@ -1,6 +1,6 @@
 # Visualize Embeddings (Java)
 
-Create text embeddings with a local [Ollama](https://ollama.com) model, reduce them to 2 or 3 dimensions with PCA, and plot them. This project is a Java port of the Python project [clean-coder/visualize_embeddings](https://github.com/clean-coder/visualize_embeddings), specifically its examples `visualize_embeddings_ollama_matplot.py` and `visualize_embeddings_ollama_plotly_3d.py`.
+Create text embeddings with a local [Ollama](https://ollama.com) model, reduce them to 2 or 3 dimensions with PCA, and plot them. This project is a Java port of the Python project [clean-coder/visualize_embeddings](https://github.com/clean-coder/visualize_embeddings), specifically its examples `visualize_embeddings_ollama_matplot.py` and `visualize_embeddings_ollama_plotly_3d.py`. The port was done with the support of [Claude Code](https://claude.com/claude-code).
 
 ## How it works
 
