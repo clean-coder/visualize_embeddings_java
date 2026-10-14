@@ -4,15 +4,13 @@ import dev.langchain4j.data.embedding.Embedding;
 import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.model.ollama.OllamaEmbeddingModel;
-import embeddings.util.EmbeddingsUtil;
-import embeddings.util.ProjectionUtil;
 import embeddings.util.Scatter3D;
 
 import java.io.IOException;
 import java.util.List;
 
-import static embeddings.util.EmbeddingsUtil.*;
-import static embeddings.util.ProjectionUtil.*;
+import static embeddings.util.EmbeddingsUtil.extractDataFromEmbeddings;
+import static embeddings.util.ProjectionUtil.pca;
 
 public class VisualizeEmbeddingsOllama3D {
 
