@@ -6,6 +6,9 @@ import org.apache.commons.math3.linear.SingularValueDecomposition;
 
 public class ProjectionUtil {
 
+    /**
+     * PCA via SVD of the mean-centered data; returns the projection onto the first k components.
+     */
     public static double[][] pca(double[][] data, int k) {
         int n = data.length, d = data[0].length;
         double[] mean = new double[d];

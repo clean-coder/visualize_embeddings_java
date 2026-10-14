@@ -23,12 +23,12 @@ import java.util.List;
 
 import static java.awt.Color.*;
 
-public class Plotter {
+public class Scatter2D {
 
     private static final List<Color> COLORS = List.of(
             RED, BLUE, PINK, BLACK, YELLOW, ORANGE, CYAN, GRAY);
 
-    public static void visualize2D(List<String> textSamples, double[][] visDims) throws IOException {
+    public static void paint(List<String> textSamples, double[][] visDims) throws IOException {
 
         // one series per text so each point gets its own fixed color
         XYSeriesCollection dataset = new XYSeriesCollection();

@@ -27,7 +27,7 @@ public class Scatter3D {
     /**
      * Interactive 3D scatter: drag = rotate, wheel = zoom, double-click = reset view.
      */
-    class Scatter3DPanel extends JPanel {
+    static class Scatter3DPanel extends JPanel {
         private static final double DEFAULT_YAW = Math.toRadians(35), DEFAULT_PITCH = Math.toRadians(20);
 
         private final double[][] pts;      // normalized to [-1, 1] per axis
@@ -168,7 +168,7 @@ public class Scatter3D {
         }
     }
 
-    public void scatter(List<String> textSamples, double[][] visDims) throws IOException {
+    public void paint(List<String> textSamples, double[][] visDims) throws IOException {
         Scatter3DPanel panel = new Scatter3DPanel(visDims, textSamples, COLORS);
         panel.setPreferredSize(new Dimension(1000, 800));
 
@@ -180,7 +180,11 @@ public class Scatter3D {
         ImageIO.write(img, "png", new File("embeddings_pca_3d.png"));
         System.out.println("saved embeddings_pca_3d.png");
 
-        if (!java.awt.GraphicsEnvironment.isHeadless()) {
+        showScatter(panel);
+    }
+
+    private static void showScatter(Scatter3DPanel panel) {
+        if (!GraphicsEnvironment.isHeadless()) {
             SwingUtilities.invokeLater(() -> {
                 JFrame frame = new JFrame("Embeddings PCA (3D) - drag to rotate, wheel to zoom");
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -190,6 +194,5 @@ public class Scatter3D {
                 frame.setVisible(true);
             });
         }
-
     }
 }

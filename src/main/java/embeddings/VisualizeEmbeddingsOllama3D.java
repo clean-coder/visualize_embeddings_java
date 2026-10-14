@@ -11,6 +11,9 @@ import embeddings.util.Scatter3D;
 import java.io.IOException;
 import java.util.List;
 
+import static embeddings.util.EmbeddingsUtil.*;
+import static embeddings.util.ProjectionUtil.*;
+
 public class VisualizeEmbeddingsOllama3D {
 
     private static final List<String> TEXT_SAMPLE = List.of(
@@ -30,12 +33,12 @@ public class VisualizeEmbeddingsOllama3D {
                 TEXT_SAMPLE.stream().map(TextSegment::from).toList()).content();
         System.out.printf("%d embeddings created.%n", embeddings.size());
 
-        double[][] data = EmbeddingsUtil.extractDataFromEmbeddings(embeddings);
-        double[][] visDims = ProjectionUtil.pca(data, 3);
+        double[][] data = extractDataFromEmbeddings(embeddings);
+        double[][] visDims = pca(data, 3);
         printEmbeddingsInfos(visDims);
 
         var scatter = new Scatter3D();
-        scatter.scatter(TEXT_SAMPLE, visDims);
+        scatter.paint(TEXT_SAMPLE, visDims);
     }
 
     private static void printEmbeddingsInfos(double[][] visDims) {
