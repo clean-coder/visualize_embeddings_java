@@ -10,6 +10,16 @@ Create text embeddings with a local [Ollama](https://ollama.com) model, reduce t
    - **2D**: JFreeChart scatter plot, saved to `embeddings_pca_2d.png` and shown in a window.
    - **3D**: custom Swing scatter plot, saved to `embeddings_pca_3d.png` and shown in a window. Drag to rotate, use the wheel to zoom, double-click to reset the view.
 
+## Example output
+
+2D (PCA, first two components):
+
+![2D PCA scatter plot of the sample embeddings](src/main/resources/embeddings_pca_2d.png)
+
+3D (PCA, first three components):
+
+![3D PCA scatter plot of the sample embeddings](src/main/resources/embeddings_pca_3d.png)
+
 ## Requirements
 
 - JDK 25 (the code uses instance `main` methods)
