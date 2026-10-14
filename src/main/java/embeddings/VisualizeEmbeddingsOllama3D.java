@@ -12,6 +12,9 @@ import java.util.List;
 import static embeddings.util.EmbeddingsUtil.extractDataFromEmbeddings;
 import static embeddings.util.ProjectionUtil.pca;
 
+/**
+ * Java port of visualize_embeddings_ollama_plotly_3d.py: embed texts, reduce with PCA, plot in 3D.
+ */
 public class VisualizeEmbeddingsOllama3D {
 
     private static final List<String> TEXT_SAMPLE = List.of(
@@ -35,8 +38,7 @@ public class VisualizeEmbeddingsOllama3D {
         double[][] visDims = pca(data, 3);
         printEmbeddingsInfos(visDims);
 
-        var scatter = new Scatter3D();
-        scatter.paint(TEXT_SAMPLE, visDims);
+        new Scatter3D().paint(TEXT_SAMPLE, visDims);
     }
 
     private static void printEmbeddingsInfos(double[][] visDims) {

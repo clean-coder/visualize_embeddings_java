@@ -169,6 +169,11 @@ public class Scatter3D {
     }
 
     public void paint(List<String> textSamples, double[][] visDims) throws IOException {
+        var panel = createChart(textSamples, visDims);
+        showChart(panel);
+    }
+
+    private Scatter3DPanel createChart(List<String> textSamples, double[][] visDims) throws IOException {
         Scatter3DPanel panel = new Scatter3DPanel(visDims, textSamples, COLORS);
         panel.setPreferredSize(new Dimension(1000, 800));
 
@@ -179,11 +184,10 @@ public class Scatter3D {
         g.dispose();
         ImageIO.write(img, "png", new File("embeddings_pca_3d.png"));
         System.out.println("saved embeddings_pca_3d.png");
-
-        showScatter(panel);
+        return panel;
     }
 
-    private static void showScatter(Scatter3DPanel panel) {
+    private void showChart(Scatter3DPanel panel) {
         if (!GraphicsEnvironment.isHeadless()) {
             SwingUtilities.invokeLater(() -> {
                 JFrame frame = new JFrame("Embeddings PCA (3D) - drag to rotate, wheel to zoom");

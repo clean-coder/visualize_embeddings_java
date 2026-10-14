@@ -15,7 +15,7 @@ import static embeddings.util.ProjectionUtil.pca;
 /**
  * Java port of visualize_embeddings_ollama_matplot.py: embed texts, reduce with PCA, plot in 2D.
  */
-public class VisualizeEmbeddingsOllama {
+public class VisualizeEmbeddingsOllama2D {
 
     private static final List<String> TEXT_SAMPLE = List.of(
             "Java ist eine Programmiersprache",
@@ -37,6 +37,15 @@ public class VisualizeEmbeddingsOllama {
 
         double[][] data = extractDataFromEmbeddings(embeddings);
         double[][] visDims = pca(data, 2);
-        Scatter2D.paint(TEXT_SAMPLE, visDims);
+        printEmbeddingsInfos(visDims);
+
+        new Scatter2D().paint(TEXT_SAMPLE, visDims);
+    }
+
+    private static void printEmbeddingsInfos(double[][] visDims) {
+        for (int i = 0; i < visDims.length; i++) {
+            System.out.printf("%-48s x=%8.4f y=%8.4f%n",
+                    TEXT_SAMPLE.get(i), visDims[i][0], visDims[i][1]);
+        }
     }
 }

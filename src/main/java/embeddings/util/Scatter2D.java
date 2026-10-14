@@ -13,6 +13,7 @@ import org.jfree.chart.ui.RectangleEdge;
 import org.jfree.chart.ui.TextAnchor;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
+import org.jspecify.annotations.NonNull;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,12 +29,17 @@ public class Scatter2D {
     private static final List<Color> COLORS = List.of(
             RED, BLUE, PINK, BLACK, YELLOW, ORANGE, CYAN, GRAY);
 
-    public static void paint(List<String> textSamples, double[][] visDims) throws IOException {
+    public void paint(List<String> textSamples, double[][] visDims) throws IOException {
+        var chart = createChart(textSamples, visDims);
+        saveChart(chart);
+        showChart(chart);
+    }
 
+    private @NonNull JFreeChart createChart(List<String> textSamples, double[][] visDims) {
         // one series per text so each point gets its own fixed color
         XYSeriesCollection dataset = new XYSeriesCollection();
         for (int i = 0; i < visDims.length; i++) {
-            System.out.printf("%-48s x=%8.4f y=%8.4f%n", textSamples.get(i), visDims[i][0], visDims[i][1]);
+            //System.out.printf("%-48s x=%8.4f y=%8.4f%n", textSamples.get(i), visDims[i][0], visDims[i][1]);
             XYSeries series = new XYSeries(textSamples.get(i));
             series.add(visDims[i][0], visDims[i][1]);
             dataset.addSeries(series);
@@ -77,14 +83,15 @@ public class Scatter2D {
         xAxis.setLowerMargin(0.25);
         xAxis.setUpperMargin(0.25);
         yAxis.setUpperMargin(0.15);
-
-        ChartUtils.saveChartAsPNG(new File("embeddings_pca_2d.png"), chart, 1000, 800);
-        System.out.println("saved embeddings_pca_2d.png");
-
-        showPlot(chart);
+        return chart;
     }
 
-    private static void showPlot(JFreeChart chart) {
+    private void saveChart(JFreeChart chart) throws IOException {
+        ChartUtils.saveChartAsPNG(new File("embeddings_pca_2d.png"), chart, 1000, 800);
+        System.out.println("saved embeddings_pca_2d.png");
+    }
+
+    private void showChart(JFreeChart chart) {
         if (!GraphicsEnvironment.isHeadless()) {
             SwingUtilities.invokeLater(() -> {
                 JFrame frame = new JFrame("Embeddings 2D Visualization");
