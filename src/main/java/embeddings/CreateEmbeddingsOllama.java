@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CreateEmbeddingsOllama {
 
-    public static void main(String[] args) {
+    static void main() {
         EmbeddingModel localEmbeddingModel = OllamaEmbeddingModel.builder()
                 .baseUrl("http://localhost:11434")
                 .modelName("nomic-embed-text")

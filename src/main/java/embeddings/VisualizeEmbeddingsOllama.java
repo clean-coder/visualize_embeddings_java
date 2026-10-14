@@ -26,7 +26,7 @@ public class VisualizeEmbeddingsOllama {
             "Shir Khan der Tiger");
 
 
-    static void main(String[] args) throws IOException {
+    static void main() throws IOException {
         EmbeddingModel model = OllamaEmbeddingModel.builder()
                 .baseUrl("http://localhost:11434")
                 .modelName("nomic-embed-text")
